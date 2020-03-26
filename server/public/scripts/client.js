@@ -38,7 +38,7 @@ function getKoalas(){
     render( response )
 }).catch( function( err ){
     // handle errors
-    alert( 'error getting songs. see console for details' );
+    alert( 'error getting koalas. see console for details' );
     console.log( err );
 })
   
@@ -60,3 +60,5 @@ function saveKoala( newKoala ){
 }) 
  
 }
+
+
