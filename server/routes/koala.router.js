@@ -14,7 +14,7 @@ const koalaRouter = express.Router();
 
 
 //DELETE - removes a koala
-router.delete('/:id', (req, res) => {
+koalaRouter.delete('/:id', (req, res) => {
     // Need to know which koala we are deleting
     // Instead of using req.body for info, use req.params
     let koalaId = req.params.id
