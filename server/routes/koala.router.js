@@ -22,7 +22,7 @@ pool.on('error', (error) => {
 })
 
 // GET
-router.get('/', (req, res) => {
+koalaRouter.get('/', (req, res) => {
     console.log('in GET');
   
     let sqlText = `SELECT * FROM "koala";`
