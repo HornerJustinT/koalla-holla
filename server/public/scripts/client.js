@@ -31,6 +31,8 @@ function setupClickListeners() {
 }
 function transferKoala(){
   console.log('in transferKoala', this);
+  // creates object 
+  updateKoala();// with object made
   
 }
 function getKoalas(){
@@ -101,6 +103,7 @@ console.log('In render', koalas);
   for( let koala of koalas ){
       $( '#viewKoalas' ).append( `
               <tr>
+                  <td>${ koala.id }</td>
                   <td>${ koala.name }</td>
                   <td>${ koala.age }</td>
                   <td>${ koala.gender }</td>
