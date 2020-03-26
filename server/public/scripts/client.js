@@ -88,3 +88,20 @@ function saveKoala( koalaToSend ){
  
 }
 
+// Display koalas on the DOM 
+function render( koalas ) {
+console.log('In render', koalas);
+  $( '#viewKoalas' ).empty(); 
+
+  // add each song to the DOM
+  for( let koala of koalas ){
+      $( '#viewKoalas' ).append( `
+              <tr>
+                  <td>${ koala.name }</td>
+                  <td>${ koala.age }</td>
+                  <td>${ koala.gender }</td>
+                  <td>${ koala.ready_to_transfer }<button class="transfer">Transfer</button></td>
+                  <td>${ koala.notes }</td>
+              </tr>` );
+  } 
+}
