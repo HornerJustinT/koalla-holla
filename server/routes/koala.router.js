@@ -22,7 +22,20 @@ pool.on('error', (error) => {
 })
 
 // GET
-
+router.get('/', (req, res) => {
+    console.log('in GET');
+  
+    let sqlText = `SELECT * FROM "koala";`
+    pool.query(sqlText)
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log('Got an error on SELECT query', error);
+        res.sendStatus(500);
+      })
+  
+  })
 
 // POST
 
