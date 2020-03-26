@@ -38,6 +38,24 @@ koalaRouter.get('/', (req, res) => {
   })
 
 // POST
+koalaRouter.post( '/', ( req, res )=> {
+    console.log( 'POST hit:', req.body );
+  
+    // SQL parameter to fill in the values - $1, $2, etc.
+    let sqlText = `INSERT INTO "koala" 
+        ("id", "name", "gender", "age", "ready_to_transfer", "notes) 
+        VALUES ($1, $2, $3, $4, $5, $6);`
+    // The array in the query holds the values to fill in     
+    pool.query( sqlText, [req.body.id, req.body.name, 
+        req.body.gender, req.body.age, req.body.readyForTransfer, req.body.notes] )
+      .then( (result) => {
+        res.sendStatus(200);
+      })
+      .catch( (error) => {
+        console.log(`Error on INSERT:`, error);
+        res.sendStatus(500);
+      })
+  })
 
 
 // PUT
