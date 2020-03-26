@@ -7,6 +7,8 @@ $( document ).ready( function(){
   // load existing koalas on page load
   getKoalas();
 
+  //Add transfer koala button for updateKoala function below
+
 }); // end doc ready
 
 function setupClickListeners() {
@@ -33,7 +35,9 @@ function getKoalas(){
   
 } // end getKoalas
 
-function saveKoala(koalaToSend ){
+
+
+function updateKoala(koalaToSend){
   console.log('in saveKoala', koalaToSend );
   // ajax call to server to get koalas
 
