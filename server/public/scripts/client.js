@@ -32,8 +32,20 @@ function setupClickListeners() {
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
+  $.ajax({
+    type: 'GET',
+    url: '/koalas'
+}).then( function( response ){
+    // response is the array of songs
+    render( response )
+}).catch( function( err ){
+    // handle errors
+    alert( 'error getting koalas. see console for details' );
+    console.log( err );
+})
   
 } // end getKoalas
+
 
 
 
@@ -41,7 +53,6 @@ function updateKoala(transferKoala) {
   console.log('in updateKoala', transferKoala); //create transfer object above
 
   let id = transferKoala.id
-
   $.ajax({
     method: 'PUT',
     url: `/koalas/${id}`,
@@ -55,4 +66,25 @@ function updateKoala(transferKoala) {
       console.log('Error in POST', error)
       alert('Unable to get koalas at this time. Please try again later.');
     });
+
 }
+
+
+
+function saveKoala( koalaToSend ){
+  console.log( 'in saveKoala', koalaToSend );
+  $.ajax({
+    type: 'POST',
+    url: '/koalas',
+    data: koalaToSend
+}).then( function( response ){
+    console.log( 'back from POST with:', response );
+    // Get songs again, so we see new one added
+    getKoalas();
+}).catch( function( err ){
+    alert( 'error adding track. see console for details' );
+    console.log( err );
+}) 
+ 
+}
+
