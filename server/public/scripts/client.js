@@ -49,14 +49,14 @@ function getKoalas(){
 
 
 
-function updateKoala(koalaToSend){
-  console.log('in saveKoala', koalaToSend );
-  // ajax call to server to get koalas
+function updateKoala(transferKoala) {
+  console.log('in updateKoala', transferKoala); //create transfer object above
 
+  let id = transferKoala.id
   $.ajax({
     method: 'PUT',
-    url: `/koala/${id}`,
-    data: koalaToSend,
+    url: `/koalas/${id}`,
+    data: transferKoala,
   })
     .then(function (response) {
       console.log('Response from server.', response);
@@ -66,7 +66,9 @@ function updateKoala(koalaToSend){
       console.log('Error in POST', error)
       alert('Unable to get koalas at this time. Please try again later.');
     });
+
 }
+
 
 
 function saveKoala( koalaToSend ){
@@ -85,3 +87,4 @@ function saveKoala( koalaToSend ){
 }) 
  
 }
+
