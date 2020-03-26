@@ -28,7 +28,7 @@ pool.on('error', (error) => {
 
 
 // PUT
-router.put('/:id', (req, res) => {
+koalaRouter.put('/:id', (req, res) => {
     let koalaId = req.params.id;
     let koalaInfo = req.body;
     console.log('In PUT updating koalas', koalaId, koalaInfo);
