@@ -33,8 +33,22 @@ function getKoalas(){
   
 } // end getKoalas
 
-function saveKoala( newKoala ){
-  console.log( 'in saveKoala', newKoala );
+function saveKoala(koalaToSend ){
+  console.log('in saveKoala', koalaToSend );
   // ajax call to server to get koalas
- 
+
+  $.ajax({
+    method: 'PUT',
+    url: `/koala/${id}`,
+    data: koalaToSend,
+  })
+    .then(function (response) {
+      console.log('Response from server.', response);
+      getKoalas();
+    })
+    .catch(function (error) {
+      console.log('Error in POST', error)
+      alert('Unable to get koalas at this time. Please try again later.');
+    });
 }
+
