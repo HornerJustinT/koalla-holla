@@ -28,7 +28,10 @@ function setupClickListeners() {
     saveKoala( koalaToSend );
   }); 
 }
-
+function transferKoala(){
+  console.log('in transferKoala', this);
+  
+}
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
