@@ -27,6 +27,7 @@ function setupClickListeners() {
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
   }); 
+  $( '#viewKoalas' ).on( 'click', 'button', transferKoala());
 }
 function transferKoala(){
   console.log('in transferKoala', this);
