@@ -32,8 +32,20 @@ function setupClickListeners() {
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
+  $.ajax({
+    type: 'GET',
+    url: '/koalas'
+}).then( function( response ){
+    // response is the array of songs
+    render( response )
+}).catch( function( err ){
+    // handle errors
+    alert( 'error getting koalas. see console for details' );
+    console.log( err );
+})
   
 } // end getKoalas
+
 
 
 
@@ -56,3 +68,20 @@ function updateKoala(koalaToSend){
     });
 }
 
+
+function saveKoala( newKoala ){
+  console.log( 'in saveKoala', newKoala );
+  $.ajax({
+    type: 'POST',
+    url: '/koalas',
+    data: newKoala
+}).then( function( response ){
+    console.log( 'back from POST with:', response );
+    // Get songs again, so we see new one added
+    getKoalas();
+}).catch( function( err ){
+    alert( 'error adding track. see console for details' );
+    console.log( err );
+}) 
+ 
+}
