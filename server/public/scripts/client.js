@@ -69,12 +69,12 @@ function updateKoala(koalaToSend){
 }
 
 
-function saveKoala( newKoala ){
-  console.log( 'in saveKoala', newKoala );
+function saveKoala( koalaToSend ){
+  console.log( 'in saveKoala', koalaToSend );
   $.ajax({
     type: 'POST',
     url: '/koalas',
-    data: newKoala
+    data: koalaToSend
 }).then( function( response ){
     console.log( 'back from POST with:', response );
     // Get songs again, so we see new one added
