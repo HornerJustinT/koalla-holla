@@ -28,7 +28,24 @@ pool.on('error', (error) => {
 
 
 // PUT
+router.put('/:id', (req, res) => {
+    let koalaId = req.params.id;
+    let koalaInfo = req.body;
+    console.log('In PUT updating koalas', koalaId, koalaInfo);
 
+    let sqlText = `UPDATE "koala" SET "name" = $1, "gender" = $2,
+      "age" = $3, "ready_to_transfer" = $4, "notes" = $5 WHERE "id" = $6;`;
+
+    pool.query(sqlText, [koalaInfo.name, koalaInfo.gender, koalaInfo.age, koalaInfo.ready_to_transfer,
+    koalaInfo.notes, koalaId])
+        .then((result) => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log('Error in PUT by id', error);
+            res.sendStatus(500);
+        })
+})
 
 // DELETE
 
