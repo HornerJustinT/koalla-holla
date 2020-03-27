@@ -89,6 +89,13 @@ function updateKoala(transferKoala) {
 
 function saveKoala(koalaToSend) {
   console.log('in saveKoala', koalaToSend);
+
+  $('#nameIn').val('');
+  $('#ageIn').val('');
+  $('#genderIn').val('');
+  $('#readyForTransferIn').val('');
+  $('#notesIn').val('');
+
   $.ajax({
     type: 'POST',
     url: '/koalas',
