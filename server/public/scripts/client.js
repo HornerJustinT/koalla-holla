@@ -27,14 +27,24 @@ function setupClickListeners() {
     // call saveKoala with the new obejct
     saveKoala(koalaToSend);
   });
-  // $( '#viewKoalas' ).on( 'click', 'button', transferKoala());
+  $( '#viewKoalas' ).on( 'click', 'button', transferKoala);
 }
-// function transferKoala(){
-//   console.log('in transferKoala', this);
-//   // creates object 
-//   updateKoala();// with object made
+function transferKoala(){
+  console.log('in transferKoala', $(this).parent().parent().children(":first-child").text());
+  console.log( $(this).parent().parent().children(":nth-child(5)"));
+  
+  let transferKoalaObject = {
+          id:$(this).parent().parent().children(":first-child").text(),
+          name:$(this).parent().parent().children(":nth-child(2)").text(),
+          age: $(this).parent().parent().children(":nth-child(3)").text(), 
+          gender: $(this).parent().parent().children(":nth-child(4)").text(),
+          readyForTransfer: $(this).parent().parent().children(":nth-child(5)").text().substring(0,1),
+          notes: $(this).parent().parent().children(":nth-child(6)").text(),
+        }
+  console.log(transferKoalaObject);
+  updateKoala(transferKoalaObject);// with object made
 
-// }
+}
 function getKoalas() {
   console.log('in getKoalas');
   // ajax call to server to get koalas
@@ -55,25 +65,25 @@ function getKoalas() {
 
 
 
-// function updateKoala(transferKoala) {
-//   console.log('in updateKoala', transferKoala); //create transfer object above
+function updateKoala(transferKoala) {
+  console.log('in updateKoala', transferKoala); //create transfer object above
 
-//   let id = transferKoala.id
-//   $.ajax({
-//     method: 'PUT',
-//     url: `/koalas/${id}`,
-//     data: transferKoala,
-//   })
-//     .then(function (response) {
-//       console.log('Response from server.', response);
-//       getKoalas();
-//     })
-//     .catch(function (error) {
-//       console.log('Error in POST', error)
-//       alert('Unable to get koalas at this time. Please try again later.');
-//     });
+  let id = transferKoala.id
+  $.ajax({
+    method: 'PUT',
+    url: `/koalas/${id}`,
+    data: transferKoala,
+  })
+    .then(function (response) {
+      console.log('Response from server.', response);
+      getKoalas();
+    })
+    .catch(function (error) {
+      console.log('Error in POST', error)
+      alert('Unable to get koalas at this time. Please try again later.');
+    });
 
-// }
+}
 
 
 

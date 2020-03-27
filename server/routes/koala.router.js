@@ -63,12 +63,12 @@ koalaRouter.put('/:id', (req, res) => {
     let koalaId = req.params.id;
     let koalaInfo = req.body;
     console.log('In PUT to update koalas', koalaId, koalaInfo);
+    if(koalaInfo.readyForTransfer == 'Y'){
+      koalaInfo.readyForTransfer= 'N'
+    }
+    let sqlText = `UPDATE "koala" SET "ready_to_transfer" = $1 WHERE "id" = $2;`;
 
-    let sqlText = `UPDATE "koala" SET "name" = $1, "gender" = $2,
-      "age" = $3, "ready_to_transfer" = $4, "notes" = $5 WHERE "id" = $6;`;
-
-    pool.query(sqlText, [koalaInfo.name, koalaInfo.gender, koalaInfo.age, koalaInfo.ready_to_transfer,
-    koalaInfo.notes, koalaId])
+    pool.query(sqlText, [koalaInfo.readyForTransfer,koalaId])
         .then((result) => {
             res.sendStatus(200);
         })
